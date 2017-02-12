@@ -1,0 +1,46 @@
+---
+title: "Practical Machine Learning Assignment"
+author: "Rahul Agarwal"
+date: "2/12/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::read_chunk('week4_prediction.R')
+```
+
+## Steps in Model Creation
+
+This document has been created as an assignment submission to the practical machine learning course on coursea.It uses random forest and some other techniques to predict how an exercise is performed based on the recording of various sensors.
+
+
+```{r, echo=FALSE,tidy=TRUE, tidy.opts=list(comment=FALSE),message=F, warning=F}
+ <<setLocation>>
+```
+1. The first step is to read the training & testing data. I randomly split the training data into training and validation set in 70:30 ratio.I plot few variables against each other and color them by the classe variable and I find that the classe can be predicted by aggregating decision rules on these variables.I also subset continous variables for pca (principal component analysis).
+```{r}
+<<dataPrep1>>
+```
+
+
+2. I calculate pca of the continious variables and scale and center each of the variables. 18 covariates capture almost ~90% the variability in the data
+```{r}
+<<pca>>
+```
+
+3. I train a random forest model on the final features.I find its accuracy to be ~97%.I set the number of trees to 200 beacuse further increase in this value does not impact the accuracy of the model.
+```{r}
+<<randomForest>>
+```
+
+4. I use the model to predict the values for the test set and save it to a csv file.
+```{r}
+<<testPrediction>>
+```
+
+5. I create a LDA model and compare results with random forest.It has acuracy of ~72% hence random forest is a better model for this data.
+
+```{r}
+<<compareLDA>>
+```
