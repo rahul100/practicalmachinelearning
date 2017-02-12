@@ -32,7 +32,8 @@ summary(pca)
 ## @knitr randomForest
 number_of_tree=200
 accuracy=function(values,prediction){ sum(ifelse(values==prediction,1,0))/length(values) } 
-modRF = randomForest(classe~., features_after_pca, ntree=number_of_tree , do.trace=FALSE)
+fitControl <- trainControl(method = 'cv', number=3)
+modRF = randomForest(classe~., features_after_pca, ntree=number_of_tree , do.trace=FALSE,trControl=fitControl)
 pred=predict(modRF,validation_features_after_pca)
 accuracy(validation$classe , pred )
 plot(modRF)

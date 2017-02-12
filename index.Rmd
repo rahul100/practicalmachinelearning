@@ -1,5 +1,5 @@
----
 title: "Practical Machine Learning Assignment"
+---
 author: "Rahul Agarwal"
 date: "2/12/2017"
 output: html_document
@@ -29,7 +29,7 @@ This document has been created as an assignment submission to the practical mach
 <<pca>>
 ```
 
-3. I train a random forest model on the final features.I find its accuracy to be ~97%.I set the number of trees to 200 beacuse further increase in this value does not impact the accuracy of the model.
+3. I train a random forest model on the final features.I find its accuracy to be ~97%.Hence the out of sample error is around 3%.I set the number of trees to 200 beacuse further increase in this value does not impact the accuracy of the model.We also use 3-fold cross-validation
 ```{r}
 <<randomForest>>
 ```
